@@ -37,9 +37,8 @@ test:cargo:
 links:specs:
   stage: links
   image: lycheeverse/lychee:latest
-  entrypoint: [""]
   script:
-    - lychee --no-config --verbose --no-progress specs/
+    - lychee --offline --include-fragments --verbose specs/
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
