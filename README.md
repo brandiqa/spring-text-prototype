@@ -1,0 +1,56 @@
+# SpringText
+
+[![CI](https://github.com/brandiqa/spring-text-prototype/actions/workflows/ci.yml/badge.svg)](https://github.com/brandiqa/spring-text-prototype/actions/workflows/ci.yml)
+
+SpringText is a modern, minimalistic text editor prototype built in Rust. The goal is to deliver a focused writing experience while borrowing proven ideas from existing editors instead of reinventing them.
+
+## Specification Workflow
+
+All product and architecture decisions flow through the RFC process located under `specs/`:
+
+- Drafts live in `specs/drafts/`, accepted records in `specs/accepted/`, and declined proposals in `specs/rejected/`.
+- Every RFC follows `specs/templates/RFC-TEMPLATE.md` and must cite prior art to reduce duplicated effort.
+- Proposed changes are discussed via pull requests labeled `rfc`. As the sole maintainer, @brandiqa approves or rejects the RFC and moves the file to the appropriate folder.
+
+The canonical workflow is described in [`specs/accepted/RFC-20251106-spec-workflow.md`](specs/accepted/RFC-20251106-spec-workflow.md).
+
+## Getting Started
+
+1. Install Rust (stable toolchain) from <https://rustup.rs>.
+2. Clone the repository:
+   ```bash
+   git clone git@github.com:brandiqa/spring-text-prototype.git
+   cd spring-text-prototype
+   ```
+3. Build and run the prototype:
+   ```bash
+   cargo run
+   ```
+
+## Development Workflow
+
+Before opening a pull request:
+
+```bash
+cargo fmt --all
+cargo clippy --all-targets --all-features -- -D warnings
+cargo test --all --locked
+```
+
+GitHub Actions automatically runs formatting, clippy, tests, and link checking for all pushes and pull requests.
+
+## Contributing
+
+1. For substantial changes, author an RFC using the template and open a pull request labeled `rfc`.
+2. Reference inspirations or prior art with stable links (commit permalinks, archived pages).
+3. Once approved, the RFC is moved into `specs/accepted/` and tracked alongside the implementation work.
+
+For smaller fixes (typos, refactors), open a regular pull request without an RFC.
+
+## Roadmap Snapshot
+
+- Establish the editor core (buffer model, undo/redo, UTF-8 correctness).
+- Add basic UX: open/save, status bar, search.
+- Integrate syntax highlighting and extensibility informed by accepted RFCs.
+
+Follow accepted RFCs and issues for the authoritative roadmap. Contributions, feedback, and experiments are welcome!
