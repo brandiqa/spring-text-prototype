@@ -1,0 +1,24 @@
+[changelog]
+header = "# Changelog\n"
+body = "{{#each releases}}\n## {{version}} - {{date}}\n{{#if commits}}\n{{#each commits}}- {{message}} ({{id}})\n{{/each}}\n{{else}}\n- No notable changes\n{{/if}}\n\n{{/each}}"
+trim = true
+
+[git]
+tag_pattern = "^v"
+commit_parsers = [
+  { message = "^feat", group = "Features" },
+  { message = "^fix", group = "Bug Fixes" },
+  { message = "^docs", group = "Documentation" },
+  { message = "^refactor", group = "Refactoring" },
+  { message = "^perf", group = "Performance" },
+  { message = "^test", group = "Testing" },
+  { message = "^chore", group = "Chores" },
+]
+filter_commits = true
+protect_breaking_commits = true
+link_parsers = [
+  { pattern = "#(\\d+)", href = "https://github.com/brandiqa/spring-text-prototype/issues/$1" }
+]
+
+[templates]
+commit = "{{#if scope}}**{{scope}}:** {{/if}}{{subject}}"
