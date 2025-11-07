@@ -1,0 +1,32 @@
+ name: CI
+
+ on:
+   push:
+   pull_request:
+
+ jobs:
+   rust:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+       - uses: dtolnay/rust-toolchain@stable
+         with:
+           components: rustfmt, clippy
+       - uses: Swatinem/rust-cache@v2
+       - name: Format
+         run: cargo fmt --all -- --check
+       - name: Clippy
+         run: cargo clippy --all-targets --all-features -- -D warnings
+       - name: Test
+         run: cargo test --all --locked
+
+   links:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+       - name: Link Checker (lychee)
+         uses: lycheeverse/lychee-action@v1
+         with:
+           args: --verbose --no-progress --no-config 'specs/**/*.md'
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
