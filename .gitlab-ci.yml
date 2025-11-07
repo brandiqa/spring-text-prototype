@@ -39,7 +39,7 @@ links:specs:
   image: lycheeverse/lychee:latest
   entrypoint: [""]
   script:
-    - bash -c 'lychee --no-config --verbose --no-progress specs/**/*.md'
+    - lychee --no-config --verbose --no-progress specs/
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
