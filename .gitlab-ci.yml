@@ -38,7 +38,7 @@ links:specs:
   stage: links
   image: lycheeverse/lychee:latest
   script:
-    - lychee --no-config --verbose --no-progress specs/**/*.md
+    - bash -c 'lychee --no-config --verbose --no-progress specs/**/*.md'
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
