@@ -40,9 +40,10 @@ links:specs:
   variables:
     DEBIAN_FRONTEND: noninteractive
   script:
-    - apt-get update && apt-get install -y --no-install-recommends ca-certificates curl && rm -rf /var/lib/apt/lists/*
-    - curl -fsSL -o /usr/local/bin/lychee https://github.com/lycheeverse/lychee/releases/download/v0.15.1/lychee-linux-x86_64
-    - chmod +x /usr/local/bin/lychee
+    - apt-get update && apt-get install -y --no-install-recommends ca-certificates curl tar && rm -rf /var/lib/apt/lists/*
+    - curl -fsSL -o /tmp/lychee.tar.gz https://github.com/lycheeverse/lychee/releases/download/lychee-v0.21.0/lychee-x86_64-unknown-linux-gnu.tar.gz
+    - tar -xzf /tmp/lychee.tar.gz -C /tmp
+    - install -m 0755 /tmp/lychee*/lychee /usr/local/bin/lychee
     - lychee --no-config --include-fragments --verbose --no-progress specs/
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
