@@ -23,6 +23,12 @@ SpringText follows a GitFlow-derived model documented in [`specs/accepted/RFC-20
 - Short-lived branches (`feature/<slug>`, `release/<version>`, `hotfix/<version>`) flow back into `develop` or `master` per the RFC.
 - GitHub Actions validate pull requests targeting `develop` and `master`.
 
+## Releasing
+
+1. Ensure `develop` is merged into `master` and the CI badges are green.
+2. Tag the release locally: `git tag -a vX.Y.Z -m "SpringText vX.Y.Z"` and push with `git push origin vX.Y.Z`.
+3. The `Release` workflow runs tests, generates changelog notes via git-cliff, and publishes the GitHub release automatically.
+
 ## Getting Started
 
 1. Install Rust (stable toolchain) from <https://rustup.rs>.
