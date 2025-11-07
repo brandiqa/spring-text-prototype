@@ -1,9 +1,9 @@
 # RFC: GitFlow Strategy for SpringText
 
-- Status: Draft
+- Status: Accepted
 - Date: 2025-11-07
 - Authors: SpringText Team
-- Tracking: (fill when PR is opened)
+- Tracking: https://github.com/brandiqa/spring-text-prototype/pull/3
 - Related: specs/accepted/RFC-20251106-spec-workflow.md
 
 ## Summary
@@ -65,4 +65,4 @@ Out of scope: monorepo considerations, package publishing automation, detailed r
 5. Move this RFC to `specs/accepted/` upon approval.
 
 ## Decision Record
-Pending review.
+Accepted on 2025-11-07 via PR [#3](https://github.com/brandiqa/spring-text-prototype/pull/3). GitFlow branching strategy is now canonical for SpringText.

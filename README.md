@@ -14,6 +14,15 @@ All product and architecture decisions flow through the RFC process located unde
 
 The canonical workflow is described in [`specs/accepted/RFC-20251106-spec-workflow.md`](specs/accepted/RFC-20251106-spec-workflow.md).
 
+## Branching Strategy
+
+SpringText follows a GitFlow-derived model documented in [`specs/accepted/RFC-20251107-gitflow.md`](specs/accepted/RFC-20251107-gitflow.md):
+
+- `master` tracks production-ready releases; each release is tagged (`vX.Y.Z`).
+- `develop` is the integration branch for all feature work.
+- Short-lived branches (`feature/<slug>`, `release/<version>`, `hotfix/<version>`) flow back into `develop` or `master` per the RFC.
+- GitHub Actions validate pull requests targeting `develop` and `master`.
+
 ## Getting Started
 
 1. Install Rust (stable toolchain) from <https://rustup.rs>.
