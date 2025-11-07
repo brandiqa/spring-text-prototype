@@ -36,7 +36,7 @@ test:cargo:
 
 links:specs:
   stage: links
-  image: ghcr.io/lycheeverse/lychee:latest
+  image: lycheeverse/lychee:latest
   script:
     - lychee --no-config --verbose --no-progress specs/**/*.md
   rules:
