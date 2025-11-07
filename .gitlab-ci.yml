@@ -37,6 +37,7 @@ test:cargo:
 links:specs:
   stage: links
   image: lycheeverse/lychee:latest
+  entrypoint: [""]
   script:
     - bash -c 'lychee --no-config --verbose --no-progress specs/**/*.md'
   rules:
