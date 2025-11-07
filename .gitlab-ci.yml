@@ -34,12 +34,16 @@
  
  links:specs:
    stage: links
-   image: lycheeverse/lychee:latest
-  variables:
-    LYCHEE_CONFIG: ""
+   image: rust:latest
+   <<: *cargo-cache
+   variables:
+     LYCHEE_CONFIG: ""
    script:
-    - unset LYCHEE_CONFIG || true
-    - lychee --no-config --verbose --no-progress specs/**/*.md
+     - apt-get update && apt-get install -y --no-install-recommends pkg-config libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
+     - rustup --version && cargo --version
+     - cargo install lychee --locked
+     - unset LYCHEE_CONFIG || true
+     - ~/.cargo/bin/lychee --no-config --verbose --no-progress specs/**/*.md
    rules:
      - if: $CI_PIPELINE_SOURCE == "push"
      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
