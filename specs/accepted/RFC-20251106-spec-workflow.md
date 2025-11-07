@@ -1,6 +1,6 @@
  # RFC: Spec Workflow for SpringText
  
- - Status: Draft
+ - Status: Accepted
  - Date: 2025-11-06
  - Authors: SpringText Team
  - Tracking: (to be filled when MR is opened)
@@ -50,5 +50,5 @@
  3) `.gitlab-ci.yml` configured for rustfmt, clippy, tests, and link checks (done).
  
  ## Decision Record
- Pending review.
+ Accepted on 2025-11-07. This RFC defines the ongoing spec workflow. Future amendments should be submitted as follow-up RFCs or marked as amendments to this document.
  
