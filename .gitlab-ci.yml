@@ -35,8 +35,11 @@
  links:specs:
    stage: links
    image: lycheeverse/lychee:latest
+  variables:
+    LYCHEE_CONFIG: ""
    script:
-     - lychee --no-config --verbose --no-progress 'specs/**/*.md'
+    - unset LYCHEE_CONFIG || true
+    - lychee --no-config --verbose --no-progress specs/**/*.md
    rules:
      - if: $CI_PIPELINE_SOURCE == "push"
      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
