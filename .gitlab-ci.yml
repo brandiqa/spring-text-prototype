@@ -1,0 +1,43 @@
+ stages:
+   - lint
+   - test
+   - links
+ 
+ variables:
+   CARGO_TERM_COLOR: "always"
+   CARGO_HOME: "$CI_PROJECT_DIR/.cargo"
+ 
+ .cargo-cache: &cargo-cache
+   cache:
+     key: "cargo-cache"
+     paths:
+       - target/
+       - .cargo/registry/
+       - .cargo/git/
+ 
+ lint:rustfmt_clippy:
+   stage: lint
+   image: rust:latest
+   <<: *cargo-cache
+   script:
+     - rustup component add rustfmt clippy
+     - cargo fmt --all -- --check
+     - cargo clippy --all-targets --all-features -- -D warnings
+ 
+ test:cargo:
+   stage: test
+   image: rust:latest
+   <<: *cargo-cache
+   needs: ["lint:rustfmt_clippy"]
+   script:
+     - cargo test --all --locked
+ 
+ links:specs:
+   stage: links
+   image: lycheeverse/lychee:latest
+   script:
+     - lychee --verbose --no-progress 'specs/**/*.md'
+   rules:
+     - if: $CI_PIPELINE_SOURCE == "push"
+     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+ 
